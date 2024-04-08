@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title><%= title %></title>
+   
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="/css/header.css" />
+</head>
+<body>
+
+<header>
+   <i class="fas fa-bars menu_icon" onclick="toggleNavMenu()"></i>
+   <h1 class="logo">contact_hub</h1>
+   <h3 class="contacts">
+     <i class="fas fa-user-friends contact_icon"></i> Contacts
+   </h3>
+   <div class="search">
+     <!-- Search Icon -->
+     <span class="search-icon"><i class="fas fa-search"></i></span>
+     <!-- Search Input -->
+     <input
+       type="text"
+       class="search-input"
+       placeholder="Search contacts..."
+     />
+   </div>
+   <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+   <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a>
+   
+   
+   
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleNavMenu()"></div>
+
+<div class="nav-menu" id="nav-menu">
+  <ul>
+    <li><a class="nav-link" href="/add"><i class="far fa-address-book" ></i> Create Contact</a></li>
+    <li><a href="#" class="nav-link"><i class="fas fa-cogs" ></i> Services</a></li>
+    <li><a href="#" class="nav-link"><i class="fas fa-blog" ></i> Blog</a></li>
+ <li>   <a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    <i class="fas fa-times close_icon" id="closeIcon" style="display:none;" onclick="toggleNavMenu()"></i>
+
+  </ul>
+</div>
+
+
+<script src="/js/script.js"></script>
+</body>
+</html>

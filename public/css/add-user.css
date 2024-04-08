@@ -1,0 +1,82 @@
+/* Resetting default margin and padding */
+* {
+   
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ /* Body styles */
+ body {
+   font-family: Arial, sans-serif;
+   background-color: #f8f9fa; /* Light gray background */
+  
+ }
+ 
+ /* Container styles */
+ .container {
+   max-width: 800px;
+   margin: 60px auto;
+   margin-top: 150px;
+   margin-bottom: 150px;
+ }
+ 
+ /* Card styles */
+ .card {
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Card header styles */
+ .card-header {
+   background-color: #007bff; /* Primary blue */
+   color: #fff;
+   padding: 15px;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+ }
+ 
+ /* Card body styles */
+ .card-body {
+   padding: 20px;
+ }
+ 
+ /* Form label styles */
+ label {
+   font-weight: bold;
+ }
+ 
+ /* Form input styles */
+ .form-control {
+   width: 100%;
+   padding: 10px;
+   margin-top: 5px;
+   margin-bottom: 20px;
+   border: 1px solid #ced4da; /* Light gray border */
+   border-radius: 5px;
+ }
+ 
+ /* Form submit button styles */
+ .btn-primary {
+   width: 100%;
+   padding: 10px;
+   background-color: #007bff; /* Primary blue */
+   color: #fff;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+ 
+ /* Form submit button hover effect */
+ .btn-primary:hover {
+   background-color: #0056b3; /* Darker shade of blue */
+ }
+ 
+ /* Responsive styles */
+ @media (max-width: 768px) {
+   .container {
+     margin: 20px;
+   }
+ }
+ 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div v-if="!isLoggedIn" class="auth-form">
+            <h2>Signup</h2>
+            <input type="text" v-model="signupUsername" placeholder="Username"><br>
+            <input type="password" v-model="signupPassword" placeholder="Password"><br>
+            <button @click="signup">Sign Up</button>
+            <hr>
+            <h2>Login</h2>
+            <input type="text" v-model="loginUsername" placeholder="Username"><br>
+            <input type="password" v-model="loginPassword" placeholder="Password"><br>
+            <button @click="login">Login</button>
+        </div>
+        <div v-else class="welcome">
+            <h2>Welcome, {{ username }}</h2>
+            <button @click="logout">Logout</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

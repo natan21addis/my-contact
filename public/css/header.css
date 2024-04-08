@@ -1,0 +1,262 @@
+.menu-icon {
+  display: none; /* Hide by default on larger screens */
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+}
+
+.menu-icon .bar {
+  width: 30px;
+  height: 4px;
+  background-color: #000;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Mobile Menu */
+/* Adjusted styles for the slider */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Slide off-screen initially */
+  width: 100%; /* Take full width of the viewport */
+  height: 100vh; /* Take full height of the viewport */
+  background-color: white; /* Match the background color of the body */
+  outline: none; /* Remove the outline */
+  z-index: 1000;
+  transition: left 0.4s; /* Smooth sliding transition */
+}
+
+/* Active state for both Home and About pages */
+.nav-link.active {
+  font-weight: bold; /* Make active page text bold */
+  color: #1c32f5; /* Blue color */
+}
+
+.nav-menu.active {
+  right: 0;
+}
+.nav-menu[style*="-300px"] + .overlay {
+  display: none;
+}
+.nav-menu.active + .overlay {
+  display: block; /* Show the overlay when nav-menu is active */
+}
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Match the background color of the body */
+  z-index: 999;
+  display: none;
+}
+
+/* Contact Icon */
+.contact_icon {
+  fill: rgb(110, 110, 189);
+  width: 24px; /* Set width for consistency */
+  height: 24px; /* Set height for consistency */
+  margin-right: -12px; /* Add margin to the right of the icon */
+}
+/* Settings Icon */
+.settings_icon {
+  fill: rgb(110, 110, 189);
+  width: 30px; /* Set width for consistency */
+  height: 30px; /* Set height for consistency */
+  padding: 8px; /* Padding for the icon */
+  cursor: pointer; /* Add cursor pointer */
+  position: absolute; /* Position it absolutely */
+  top: 10px; /* Adjust from the top */
+  right: 15px; /* Adjust from the right */
+  transform: scale(1.3);
+}
+
+.search {
+  background-color: #f2f2f2;
+  position: relative;
+  flex: 0.4; /* Take less remaining space */
+  margin-right: 10px; /* Add margin to the right */
+  padding: 5px; /* Padding for input */
+  border: 0.5px solid #ccc; /* Add border */
+  border-radius: 10px; /* Add border radius */
+  outline: none; /* Remove default focus outline */
+  display: flex; /* Display flex to align items */
+  align-items: center; /* Align items vertically */
+  margin-left: -100px; /* Remove left margin */
+}
+
+/* Search Input */
+.search-input {
+  width: 250px; /* Adjust input width */
+  background-color: #f2f2f2; /* Add background color */
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px; /* Remove border */
+  padding: 10px 160px 10px 20px; /* Adjust 
+  oupadding */
+  outline: none; /* Remove the black border on focus */
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #999; /* Set search icon color */
+}
+/* Header */
+header {
+  position: fixed; /* Make the header fixed */
+  top: 0; /* Position it at the top */
+  width: 100%; /* Take full width of the viewport */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space elements evenly */
+  padding: 10px;
+  margin-left: 0px; /* Add padding for spacing */
+  background-color: #f8f9fa;
+  /* Add background color */
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  outline: none;
+}
+/* Your existing CSS styles */
+
+/* Menu Icon, Settings Icon */
+.menu_icon,
+.contact_icon {
+  fill: rgb(110, 110, 189);
+  width: 30px; /* Set width for consistency */
+  height: 30px; /* Set height for consistency */
+  padding: 5px; /* Padding for the icon */
+  cursor: pointer; /* Add cursor pointer */
+}
+
+/* Logo */
+.logo {
+  font-size: 40px; /* Adjust font size */
+  background-image: linear-gradient(
+    to right,
+    #010644 0%,
+    #eb640a 16.66%,
+    #0307e6 16.66%,
+    #f17705 33.33%,
+    #e97305 33.33%,
+    #db8310 50%,
+    #161b63 50%,
+    #050344 66.66%,
+    #043fe0 66.66%,
+    #f38824 83.33%,
+    #03095e 83.33%,
+    #04025e 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; /* Hide text color */
+  text-decoration: none; /* Remove default underline */
+  margin-top: -10px; /* Adjust margin-top */
+  margin-left: -110px; /* Shift logo to the left */
+}
+
+/* Hover effect for icons */
+.menu_icon:hover,
+.contact_icon:hover,
+.settings_icon:hover {
+  fill: rgb(70, 70, 169); /* Darken the color on hover */
+}
+
+/* Navigation Links */
+.nav-link {
+  text-decoration: none;
+  font-size: 18px;
+  color: #04107a; /* Change to white on hover */
+  transition: color 0.3s; /* Smooth color transition */
+  margin-right: 50px;
+}
+
+.nav-link:hover {
+  font-size: 23px;
+  color: #f7900a; /* Blue color */
+}
+
+/* Adding spacing between "Logout" and "Blog" */
+.nav-link:nth-child(n + 3) {
+  margin-left: -120px; /* Add margin between links */
+}
+/* Adjusted styles for the items in the slider */
+.nav-menu ul li a {
+  display: block;
+  padding: 15px;
+  font-size: 18px; /* Increased font size */
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-menu ul li a i {
+  margin-right: 10px; /* Add margin to the right of the icons */
+}
+
+/* Style adjustments for the "Create Contact" icon */
+.nav-menu ul li:nth-child(3) a i {
+  font-size: 24px; /* Increase icon size */
+  color: #4285f4; /* Google Contacts blue */
+}
+
+/* Active state for Home page */
+.nav-menu ul li:first-child a {
+  font-weight: bold; /* Make Home page text bold */
+  color: #1c32f5; /* Blue color */
+}
+
+/* Media Query for Mobile View */
+@media only screen and (max-width: 100px) {
+  /* Adjustments for smaller screens */
+  .search {
+    flex: 0.6; /* Take less remaining space */
+    font-size: 12px; /* Adjust font size */
+  }
+}
+
+/* Additional styling for the main menu */
+/* Additional styling for the main menu */
+.menu_icon {
+  margin-top: -50px; /* Increase margin-top */
+  border-radius: 50%; /* Make it circular */
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+/* Adjustments to position the menu on the left */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Adjusted to start from the left */
+  width: 300px; /* Adjusted width */
+  height: 100%;
+  background-color: #e1e9f1;
+  z-index: 1000;
+  transition: 0.4s;
+}
+
+/* Adjustments to position the close icon on the left */
+/* Adjustments to position the close icon on the left */
+.close_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1002; /* Ensure the close icon is above the overlay */
+}

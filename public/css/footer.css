@@ -1,0 +1,95 @@
+ footer {
+   background-color: rgb(13, 44, 219);
+   padding-top: 3%;
+   margin-right: -2%;
+   margin-left: 0.03%;
+ 
+ }
+ footer a {
+   color: #f6f6f7;
+ }
+ footer p {
+   font-size: 1.3em;
+   color: #f7890c;
+   font-weight: bold;
+   margin-bottom: 20px;
+   border-left: 4px solid #f7890c;
+   padding-left: 10px;
+   border-radius: 3px;
+ }
+ .upper-section {
+   display: flex;
+   justify-content: space-evenly;
+ }
+ .form-section {
+   width: 30%;
+ }
+ form {
+   display: flex;
+   flex-direction: column;
+ }
+ form label {
+   color:#f7890c;
+   margin-bottom: 10px;
+ }
+ 
+ form input,
+ .country {
+   padding: 10px 15px;
+   outline: none;
+   margin-bottom: 10px;
+   border-radius: 5px;
+   border: none;
+   background-color: lightgray;
+ }
+ .social-media {
+   fill: white;
+   height: 25px;
+   width: 25px;
+ }
+ 
+ .follow ul li {
+   display: inline;
+   padding-left: 8px !important;
+ }
+ .relevant-box {
+   display: grid;
+   grid-template-columns: 250px 250px;
+   column-gap: 5%;
+   row-gap: 0%;
+ }
+ .relevant-box ul li {
+   margin-bottom: 10px;
+   padding-left: 14px;
+ }
+ #submit-button {
+   align-self: center;
+   margin-top: 20px;
+   padding: 10px 25px;
+   background-color: transparent;
+   border: 2px solid #ffffff;
+   color: #ffffff;
+   font-size: 1em;
+ }
+ #move-up {
+   fill: #f7890c;
+   width: 40px;
+   height: 40px;
+   transition: opacity 0.15s;
+ }
+ #move-up:hover {
+   opacity: 0.5;
+ }
+ .bottom-section {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(248, 237, 230);
+   margin-top: 5%;
+   padding: 3% 0;
+ }
+ #copy {
+   color: #f7890c;
+ }
+ 
