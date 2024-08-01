@@ -6,7 +6,7 @@ const multer = require("multer");
 const fs = require("fs");
 
 // Multer configuration for file upload
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
   },
@@ -15,9 +15,18 @@ var storage = multer.diskStorage({
   },
 });
 
-var upload = multer({
-  storage: storage,
-}).single("image");
+const upload = multer({ storage: storage }).single("image");
+
+// Middleware to verify token
+function verifyToken(req, res, next) {
+  const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+  if (!token) return res.status(401).json({ message: "Access denied. Token is missing." });
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(400).json({ message: "Invalid token." });
+    req.userId = decoded.id;
+    next();
+  });
+}
 
 // Signup route
 router.post("/signup", async (req, res) => {
@@ -49,23 +58,11 @@ router.post("/login", async (req, res) => {
 // Protected route
 router.get("/protected", verifyToken, async (req, res) => {
   try {
-    // Retrieve protected data
     res.json({ message: "Access granted. You are authenticated." });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
-
-// Middleware to verify token
-function verifyToken(req, res, next) {
-  const token = req.headers.authorization;
-  if (!token) return res.status(401).json({ message: "Access denied. Token is missing." });
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(400).json({ message: "Invalid token." });
-    req.userId = decoded.id;
-    next();
-  });
-}
 
 // Insert a user to the database
 router.post("/add", upload, async (req, res) => {
@@ -74,7 +71,7 @@ router.post("/add", upload, async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      image: req.file.filename,
+      image: req.file ? req.file.filename : null,
     });
     await newUser.save();
     req.session.message = {
@@ -83,7 +80,7 @@ router.post("/add", upload, async (req, res) => {
     };
     res.redirect("/");
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res.status(500).json({ message: err.message, type: "danger" });
   }
 });
 
@@ -93,13 +90,13 @@ router.get("/", async (req, res) => {
     const users = await User.find();
     res.render("index", { title: "HOME PAGE", users: users });
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res.status(500).json({ message: err.message, type: "danger" });
   }
 });
 
 // Render add user page
 router.get("/add", (req, res) => {
-  res.render("add_user", { title: "add users" });
+  res.render("add_user", { title: "Add Users" });
 });
 
 // Edit user route
@@ -110,32 +107,32 @@ router.get("/edit/:id", async (req, res) => {
     if (!user) {
       return res.redirect("/");
     }
-    res.render("edit_users", { title: "edit user", user: user });
+    res.render("edit_users", { title: "Edit User", user: user });
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res.status(500).json({ message: err.message, type: "danger" });
   }
 });
 
 // Update user route
 router.post("/update/:id", upload, async (req, res) => {
   try {
-    let id = req.params.id;
-    let new_image = "";
+    const id = req.params.id;
+    let newImage = req.body.old_image;
+    
     if (req.file) {
-      new_image = req.file.filename;
+      newImage = req.file.filename;
       try {
         fs.unlinkSync("./uploads/" + req.body.old_image);
       } catch (err) {
         console.log(err);
       }
-    } else {
-      new_image = req.body.old_image;
     }
+
     const result = await User.findByIdAndUpdate(id, {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      image: new_image,
+      image: newImage,
     });
     if (!result) {
       return res.redirect("/");
@@ -146,15 +143,15 @@ router.post("/update/:id", upload, async (req, res) => {
     };
     res.redirect("/");
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res.status(500).json({ message: err.message, type: "danger" });
   }
 });
-//delete the user
+
 // Delete user route
 router.get('/delete/:id', (req, res) => {
   const id = req.params.id;
   User.findByIdAndRemove(id, (err, result) => {
-    if (result.image !== '') {
+    if (result && result.image) {
       try {
         fs.unlinkSync('./uploads/' + result.image);
       } catch (err) {
@@ -162,7 +159,7 @@ router.get('/delete/:id', (req, res) => {
       }
     }
     if (err) {
-      res.json({ message: err.message });
+      res.status(500).json({ message: err.message });
     } else {
       req.session.message = {
         type: 'info',
@@ -172,3 +169,6 @@ router.get('/delete/:id', (req, res) => {
     }
   });
 });
+
+module.exports = router;
+
